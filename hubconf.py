@@ -182,12 +182,15 @@ def load_model(mypath="model.pth"):
     model.load_state_dict(torch.load("model.pth"))
     return model
 
-def sample_test(model1, test_data):
+def sample_test(model1,test_loader):
     model1.eval()
-    x, y = test_data.__getitem__(0)
+   # x, y = test_data.__getitem__(0)
+
     
     with torch.no_grad():
-        pred = model1(x.cuda())
-        predicted, actual = classes[pred[0].argmax(0)], classes[y]
-        print(f'Predicted: "{predicted}", Actual: "{actual}"')
+        for x,y in test_loader:
+            pred = model1(x.cuda())
+            predicted, actual = classes[pred[0].argmax(0)], classes[y]
+            print(f'Predicted: "{predicted}", Actual: "{actual}"')
+            break
 
