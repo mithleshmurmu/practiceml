@@ -190,7 +190,7 @@ def sample_test(model1,test_loader):
     with torch.no_grad():
         for x,y in test_loader:
             pred = model1(x.cuda())
-            predicted, actual = classes[pred[0].argmax(0)], classes[y]
+            predicted, actual = classes[pred.argmax(1)], classes[y]
             print(f'Predicted: "{predicted}", Actual: "{actual}"')
             break
 
