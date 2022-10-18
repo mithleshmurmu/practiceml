@@ -185,10 +185,9 @@ def load_model(mypath="model.pth"):
 def sample_test(model1, test_data):
     model1.eval()
     x, y = test_data.__getitem__(0)
-    print(x.shape)
-    print(y.shape)
-    # with torch.no_grad():
-    #     pred = model1(x.cuda())
-    #     predicted, actual = classes[pred[0].argmax(0)], classes[y]
-    #     print(f'Predicted: "{predicted}", Actual: "{actual}"')
+    
+    with torch.no_grad():
+        pred = model1(x.cuda())
+        predicted, actual = classes[pred[0].argmax(0)], classes[y]
+        print(f'Predicted: "{predicted}", Actual: "{actual}"')
 
