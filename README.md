@@ -1,0 +1,2 @@
+# practiceml
+practicing the nn 
