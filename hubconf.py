@@ -181,7 +181,7 @@ def sample_test(model1, test_data):
     model1.eval()
     x, y = test_data[0][0], test_data[0][1]
     with torch.no_grad():
-        pred = model1(x)
+        pred = model1(x.cuda())
         predicted, actual = classes[pred[0].argmax(0)], classes[y]
         print(f'Predicted: "{predicted}", Actual: "{actual}"')
 
