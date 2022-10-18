@@ -184,7 +184,7 @@ def load_model(mypath="model.pth"):
 
 def sample_test(model1, test_data):
     model1.eval()
-    x, y = test_data[0]
+    x, y = test_data.__getitem__(0)
     print(x.shape)
     print(y.shape)
     # with torch.no_grad():
