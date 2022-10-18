@@ -70,7 +70,7 @@ def load_data():
         root="data",
         train=True,
         download=True,
-        transform=transform_train(),
+        transform=transform_train,
     )
 
     # Download test data from open datasets.
@@ -78,16 +78,16 @@ def load_data():
         root="data",
         train=False,
         download=True,
-        transform=transform_test(),
+        transform=transform_test,
     )
     
     return training_data, test_data
 
-def create_dataloaders(training_data, test_data, batch_size=64):
+def create_dataloaders(training_data, test_data, batch_size=128):
 
     # Create data loaders.
-    train_dataloader = DataLoader(training_data, batch_size=batch_size)
-    test_dataloader = DataLoader(test_data, batch_size=batch_size)
+    train_dataloader = DataLoader(training_data, batch_size=batch_size,shuffle=True, num_workers=2)
+    test_dataloader = DataLoader(test_data, batch_size=batch_size,shuffle=True, num_workers=2)
 
     for X, y in test_dataloader:
         print(f"Shape of X [N, C, H, W]: {X.shape}")
