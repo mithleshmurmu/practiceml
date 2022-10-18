@@ -117,6 +117,11 @@ def create_dataloaders(training_data, test_data, batch_size=128):
         print(f"Shape of X [N, C, H, W]: {X.shape}")
         print(f"Shape of y: {y.shape} {y.dtype}")
         break
+    for X, y in train_dataloader:
+        print(f"Shape of X [N, C, H, W]: {X.shape}")
+        print(f"Shape of y: {y.shape} {y.dtype}")
+        break
+
         
     return train_dataloader, test_dataloader
 
