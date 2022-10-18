@@ -43,7 +43,7 @@ transform_test = transforms.Compose([
 class NeuralNetwork(nn.Module):
     def __init__(self):
         super().__init__()
-        
+        self.flatten = nn.Flatten()
         self.linear_relu_stack = nn.Sequential(
            
         
@@ -77,7 +77,7 @@ class NeuralNetwork(nn.Module):
             nn.Linear(512, 10))
 
     def forward(self, x):
-        
+        x = self.flatten(x)
         logits = self.linear_relu_stack(x)
         return logits
 
@@ -179,7 +179,7 @@ def load_model(mypath="model.pth"):
 
 def sample_test(model1, test_data):
     model1.eval()
-    x, y = test_data[0][0][0], test_data[0][0][1]
+    x, y = test_data[0][0], test_data[0][1]
     with torch.no_grad():
         pred = model1(x.cuda())
         predicted, actual = classes[pred[0].argmax(0)], classes[y]
